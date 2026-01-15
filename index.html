@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0f1a" />
+  <title>7-Day Diet Plan • Training Split</title>
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.10);
+      --line: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.50);
+      --accent:#7C5CFF;
+      --accent2:#19D3FF;
+      --good:#4DFFB5;
+      --warn:#FFCC66;
+      --danger:#FF5C7A;
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --pad: 16px;
+      --pad2: 22px;
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(900px 520px at 100% 20%, rgba(25,211,255,.22), transparent 55%),
+        radial-gradient(800px 500px at 10% 95%, rgba(77,255,181,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 60%, #070A12);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 16px 60px;
+    }
+
+    /* Header */
+    .hero{
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      position: relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(600px 200px at 20% 0%, rgba(124,92,255,.45), transparent 60%),
+        radial-gradient(520px 260px at 80% 10%, rgba(25,211,255,.32), transparent 60%),
+        radial-gradient(600px 240px at 50% 120%, rgba(77,255,181,.18), transparent 60%);
+      pointer-events:none;
+      filter:saturate(1.2);
+      opacity:.85;
+    }
+    .hero > *{position:relative}
+    .toprow{
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .title{
+      display:flex; gap:12px; align-items:center;
+      min-width: 260px;
+    }
+    .logo{
+      width:44px; height:44px;
+      border-radius: 14px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.75), transparent 60%),
+        linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 25px rgba(124,92,255,.25);
+      border: 1px solid rgba(255,255,255,.18);
+      flex:0 0 auto;
+    }
+    h1{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: .2px;
+      line-height: 1.15;
+    }
+    .subtitle{
+      margin-top:6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pillrow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+    .pill{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      padding: 10px 12px;
+      border-radius: 999px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-size: 13px;
+      color: var(--muted);
+      user-select:none;
+    }
+    .dot{
+      width:10px; height:10px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(124,92,255,.14);
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .btn{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      cursor:pointer;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.22);
+      transform: translateY(-1px);
+    }
+    .btn:active{transform: translateY(0px) scale(.99)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(25,211,255,.18));
+      border-color: rgba(124,92,255,.45);
+    }
+    .hint{
+      color: var(--muted2);
+      font-size: 12px;
+    }
+
+    /* Tabs */
+    .tabs{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin-top: 18px;
+      padding: 10px 0;
+      backdrop-filter: blur(10px);
+    }
+    .tabbar{
+      display:flex;
+      gap:10px;
+      overflow:auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.14) transparent;
+    }
+    .tabbar::-webkit-scrollbar{height:10px}
+    .tabbar::-webkit-scrollbar-thumb{background: rgba(255,255,255,.14); border-radius: 999px}
+    .tab{
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.15);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      cursor:pointer;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
+      user-select:none;
+    }
+    .tab strong{color: var(--text); font-weight:600}
+    .tag{
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+    }
+    .tab.active{
+      color: var(--text);
+      border-color: rgba(124,92,255,.45);
+      background: linear-gradient(135deg, rgba(124,92,255,.22), rgba(25,211,255,.10));
+    }
+
+    /* Content layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    @media (max-width: 940px){
+      .grid{grid-template-columns: 1fr}
+      .tabs{top:0}
+    }
+
+    .panel{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .panelHeader{
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .panelHeader h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .panelHeader .meta{
+      margin-top:4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Meal cards */
+    .meals{
+      padding: 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 700px){
+      .meals{grid-template-columns: 1fr}
+    }
+    .meal{
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .12s ease, border-color .2s ease, background .2s ease;
+    }
+    .meal:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+    }
+    .meal .head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+    .badge{
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      background: rgba(0,0,0,.18);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+    .badge i{
+      width:8px; height:8px; border-radius: 999px; display:inline-block;
+      background: rgba(255,255,255,.22);
+      box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+    }
+    .meal h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.2px;
+    }
+    .meal p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .meal .copy{
+      margin-top: 12px;
+      width: 100%;
+      justify-content:center;
+    }
+
+    /* Side panel */
+    .side{
+      padding: 16px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .card{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size: 13px;
+      color: var(--text);
+      letter-spacing:.2px;
+    }
+    .card .small{
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .list{
+      margin:10px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap: 8px;
+    }
+    .list li{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.12);
+    }
+    .list li .left{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .check{
+      width:18px; height:18px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.04);
+      flex: 0 0 auto;
+      display:grid;
+      place-items:center;
+      margin-top: 1px;
+    }
+    .check svg{opacity:0; transform: scale(.9); transition: .15s ease}
+    .list li.done{
+      border-color: rgba(77,255,181,.25);
+      background: rgba(77,255,181,.08);
+    }
+    .list li.done .check{
+      border-color: rgba(77,255,181,.55);
+      background: rgba(77,255,181,.14);
+    }
+    .list li.done .check svg{opacity:1; transform: scale(1)}
+    .list li .label{
+      font-size: 13px;
+      color: var(--text);
+    }
+    .list li .sub{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .kbd{
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.14);
+      border-bottom-color: rgba(255,255,255,.28);
+      background: rgba(0,0,0,.18);
+      padding: 3px 7px;
+      border-radius: 8px;
+      white-space:nowrap;
+    }
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 18px;
+      z-index: 50;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(14px);
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .2s ease, transform .2s ease;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-size: 13px;
+    }
+    .toast.show{
+      opacity:1;
+      transform: translateX(-50%) translateY(-2px);
+    }
+    .toast .spark{
+      width:10px; height:10px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(124,92,255,.14);
+    }
+
+    /* Print */
+    @media print{
+      body{background:#fff; color:#111}
+      .tabs,.actions,.btn,.toast{display:none !important}
+      .panel,.hero,.card,.meal{box-shadow:none !important}
+      .hero,.panel,.card,.meal{background:#fff !important; border-color:#ddd !important}
+      .subtitle,.meta,.muted,.small,.meal p{color:#333 !important}
+      .wrap{padding:0}
+      .grid{grid-template-columns: 1fr}
+      .meals{grid-template-columns: 1fr 1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <section class="hero" aria-label="Diet plan header">
+      <div class="toprow">
+        <div class="title">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>7-Day Diet Plan</h1>
+            <div class="subtitle">Aligned with your training split • Built for quick meal prep + consistency</div>
+          </div>
+        </div>
+
+        <div class="pillrow">
+          <div class="pill"><span class="dot"></span> Tap a day • Copy meals • Track prep</div>
+          <div class="pill"><span class="dot"></span> Works offline once saved</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <button class="btn primary" id="copyDayBtn" title="Copy today's meals to clipboard">Copy day</button>
+          <button class="btn" id="copyShopBtn" title="Copy shopping list to clipboard">Copy shopping list</button>
+          <button class="btn" onclick="window.print()" title="Print or save as PDF">Print / PDF</button>
+        </div>
+        <div class="hint">Pro tip: On phone, add this page to Home Screen. On desktop, <span class="kbd">Ctrl</span> + <span class="kbd">P</span> prints clean.</div>
+      </div>
+    </section>
+
+    <div class="tabs" aria-label="Day selector">
+      <div class="tabbar" id="tabbar"></div>
+    </div>
+
+    <main class="grid">
+      <!-- Main day plan -->
+      <section class="panel" aria-label="Selected day plan">
+        <div class="panelHeader">
+          <div>
+            <h2 id="dayTitle">—</h2>
+            <div class="meta" id="dayMeta">—</div>
+          </div>
+          <div class="pill" title="Meals per day"><span class="dot"></span><span id="mealCount">4 meals</span></div>
+        </div>
+
+        <div class="meals" id="meals"></div>
+      </section>
+
+      <!-- Side utilities -->
+      <aside class="panel" aria-label="Utilities">
+        <div class="side">
+          <div class="card">
+            <h3>Prep Checklist</h3>
+            <div class="small">Tap to check off. Saves on this device.</div>
+            <ul class="list" id="prepList"></ul>
+          </div>
+
+          <div class="card">
+            <h3>Shopping List (Base)</h3>
+            <div class="small">A smart “starter list” from your plan. You can copy it and adjust quantities.</div>
+            <ul class="list" id="shopList"></ul>
+          </div>
+
+          <div class="card">
+            <h3>How to use</h3>
+            <div class="small">
+              • Select a day from the top<br/>
+              • Use <b>Copy day</b> for quick notes / meal prep texts<br/>
+              • Use <b>Print / PDF</b> for a clean sheet<br/>
+              • Checklist + selected day persist locally
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="spark" aria-hidden="true"></span>
+    <span id="toastText">Copied.</span>
+  </div>
+
+  <script>
+    const PLAN = [
+      {
+        day: "Monday",
+        split: "Push (Strength)",
+        meals: [
+          { name: "Morning", items: "3 eggs, whole grain toast, banana", tone: "strength" },
+          { name: "Lunch", items: "Chicken breast, white rice, vegetables", tone: "neutral" },
+          { name: "Snack (Post-Workout)", items: "Whey protein, Greek yogurt + granola", tone: "post" },
+          { name: "Dinner", items: "Steak, potatoes, side salad", tone: "neutral" },
+        ]
+      },
+      {
+        day: "Tuesday",
+        split: "Pull (Strength)",
+        meals: [
+          { name: "Morning", items: "Greek yogurt, whey protein, berries, granola", tone: "strength" },
+          { name: "Lunch", items: "Chicken, rice, vegetables", tone: "neutral" },
+          { name: "Snack (Post-Workout)", items: "Whey protein, fruit", tone: "post" },
+          { name: "Dinner", items: "Salmon, rice, asparagus", tone: "neutral" },
+        ]
+      },
+      {
+        day: "Wednesday",
+        split: "Legs (Strength)",
+        meals: [
+          { name: "Morning", items: "3 eggs, small potato, fruit", tone: "strength" },
+          { name: "Lunch", items: "Chicken, rice, vegetables", tone: "neutral" },
+          { name: "Snack (Post-Workout)", items: "Whey protein, rice cakes or fruit", tone: "post" },
+          { name: "Dinner", items: "Chipotle chicken bowl (rice, beans, veggies, salsa)", tone: "neutral" },
+        ]
+      },
+      {
+        day: "Thursday",
+        split: "Rest Day",
+        meals: [
+          { name: "Morning", items: "Greek yogurt, granola, berries", tone: "rest" },
+          { name: "Lunch", items: "Chicken breast, vegetables, small rice portion", tone: "rest" },
+          { name: "Snack", items: "Greek yogurt or protein shake", tone: "rest" },
+          { name: "Dinner", items: "Salmon, roasted vegetables, olive oil", tone: "rest" },
+        ]
+      },
+      {
+        day: "Friday",
+        split: "Push (Hypertrophy)",
+        meals: [
+          { name: "Morning", items: "3 eggs, whole grain toast, fruit", tone: "hyper" },
+          { name: "Lunch", items: "Chicken, pasta, vegetables", tone: "neutral" },
+          { name: "Snack (Post-Workout)", items: "Whey protein, Greek yogurt", tone: "post" },
+          { name: "Dinner", items: "Chick-fil-A grilled chicken sandwich, fruit cup", tone: "neutral" },
+        ]
+      },
+      {
+        day: "Saturday",
+        split: "Pull (Hypertrophy)",
+        meals: [
+          { name: "Morning", items: "Greek yogurt, whey protein, banana", tone: "hyper" },
+          { name: "Lunch", items: "Chicken, rice, vegetables", tone: "neutral" },
+          { name: "Snack (Post-Workout)", items: "Whey protein, granola", tone: "post" },
+          { name: "Dinner", items: "Steak, rice, vegetables", tone: "neutral" },
+        ]
+      },
+      {
+        day: "Sunday",
+        split: "Legs (Hypertrophy)",
+        meals: [
+          { name: "Morning", items: "3 eggs, whole grain toast", tone: "hyper" },
+          { name: "Lunch", items: "Chicken, rice, vegetables", tone: "neutral" },
+          { name: "Snack (Post-Workout)", items: "Whey protein, fruit", tone: "post" },
+          { name: "Dinner", items: "Chicken stir-fry, vegetables, small rice portion", tone: "neutral" },
+        ]
+      },
+    ];
+
+    const BASE_SHOPPING = [
+      { k: "Eggs", d: "For mornings (3/day on egg days)" },
+      { k: "Whole grain toast / bread", d: "Breakfast carb" },
+      { k: "Bananas + mixed fruit", d: "Pre/post + easy snacks" },
+      { k: "Greek yogurt", d: "Daily protein base" },
+      { k: "Whey protein", d: "Post-workout anchor" },
+      { k: "Granola", d: "Yogurt + quick calories" },
+      { k: "Chicken breast", d: "Main lean protein" },
+      { k: "Steak", d: "Dinner protein (2x)" },
+      { k: "Salmon", d: "Dinner protein (2x)" },
+      { k: "White rice", d: "Main carb base" },
+      { k: "Pasta", d: "Friday lunch" },
+      { k: "Potatoes", d: "Monday dinner + Wednesday morning" },
+      { k: "Beans + salsa", d: "Chipotle bowl components" },
+      { k: "Asparagus", d: "Tuesday dinner" },
+      { k: "Mixed vegetables", d: "Daily (fresh or frozen)" },
+      { k: "Olive oil", d: "Rest day dinner fat" },
+      { k: "Rice cakes (optional)", d: "Wednesday snack option" },
+      { k: "Side salad kit", d: "Monday dinner" },
+    ];
+
+    const PREP_CHECKLIST = [
+      { k: "Cook a big batch of rice", d: "2–3 days at a time" },
+      { k: "Bake / grill chicken for 3–4 meals", d: "Portion into containers" },
+      { k: "Wash + prep veggies", d: "Ready to throw into meals" },
+      { k: "Stock post-workout items", d: "Whey + fruit or yogurt" },
+      { k: "Plan your dinners", d: "Steak / salmon / bowls" },
+      { k: "Pack tomorrow’s lunch", d: "No decision fatigue" },
+    ];
+
+    const els = {
+      tabbar: document.getElementById("tabbar"),
+      dayTitle: document.getElementById("dayTitle"),
+      dayMeta: document.getElementById("dayMeta"),
+      mealCount: document.getElementById("mealCount"),
+      meals: document.getElementById("meals"),
+      toast: document.getElementById("toast"),
+      toastText: document.getElementById("toastText"),
+      copyDayBtn: document.getElementById("copyDayBtn"),
+      copyShopBtn: document.getElementById("copyShopBtn"),
+      prepList: document.getElementById("prepList"),
+      shopList: document.getElementById("shopList"),
+    };
+
+    const storage = {
+      get(key, fallback){
+        try{
+          const v = localStorage.getItem(key);
+          return v ? JSON.parse(v) : fallback;
+        }catch(e){ return fallback; }
+      },
+      set(key, value){
+        try{ localStorage.setItem(key, JSON.stringify(value)); }catch(e){}
+      }
+    };
+
+    const state = {
+      activeIndex: storage.get("diet_active_index", 0),
+      prepDone: storage.get("diet_prep_done", {}),
+      shopDone: storage.get("diet_shop_done", {})
+    };
+
+    function toast(msg){
+      els.toastText.textContent = msg;
+      els.toast.classList.add("show");
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => els.toast.classList.remove("show"), 1600);
+    }
+
+    function toneDot(tone){
+      // maps to subtle color via inline style (still respects overall palette)
+      const map = {
+        strength: "linear-gradient(135deg, rgba(124,92,255,.95), rgba(25,211,255,.95))",
+        hyper: "linear-gradient(135deg, rgba(25,211,255,.95), rgba(77,255,181,.95))",
+        post: "linear-gradient(135deg, rgba(77,255,181,.95), rgba(255,204,102,.95))",
+        rest: "linear-gradient(135deg, rgba(255,204,102,.95), rgba(255,92,122,.80))",
+        neutral: "linear-gradient(135deg, rgba(255,255,255,.35), rgba(255,255,255,.18))"
+      };
+      return map[tone] || map.neutral;
+    }
+
+    function renderTabs(){
+      els.tabbar.innerHTML = "";
+      PLAN.forEach((d, i) => {
+        const b = document.createElement("button");
+        b.className = "tab" + (i === state.activeIndex ? " active" : "");
+        b.type = "button";
+        b.innerHTML = `<strong>${d.day}</strong><span class="tag">${d.split}</span>`;
+        b.addEventListener("click", () => {
+          state.activeIndex = i;
+          storage.set("diet_active_index", state.activeIndex);
+          renderAll();
+          // center active tab
+          b.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+        });
+        els.tabbar.appendChild(b);
+      });
+    }
+
+    function mealCard(meal){
+      const card = document.createElement("div");
+      card.className = "meal";
+      card.innerHTML = `
+        <div class="head">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span class="badge"><i style="background:${toneDot(meal.tone)}; box-shadow: 0 0 0 4px rgba(255,255,255,.06)"></i>${meal.name}</span>
+          </div>
+          <button class="btn" style="padding:8px 10px; border-radius: 999px;" title="Copy this meal">Copy</button>
+        </div>
+        <h3>${meal.items}</h3>
+        <p style="margin-top:8px;">Keep it simple. Hit your protein. Repeat.</p>
+      `;
+
+      const btn = card.querySelector("button");
+      btn.addEventListener("click", async () => {
+        await copyText(`${PLAN[state.activeIndex].day} — ${meal.name}: ${meal.items}`);
+        toast("Meal copied to clipboard.");
+      });
+
+      return card;
+    }
+
+    function renderDay(){
+      const d = PLAN[state.activeIndex];
+      els.dayTitle.textContent = `${d.day} — ${d.split}`;
+      els.dayMeta.textContent = `Meals: ${d.meals.length} • Focus: ${d.split.includes("Rest") ? "Recovery + consistency" : "Training day fuel"}`;
+      els.mealCount.textContent = `${d.meals.length} meals`;
+
+      els.meals.innerHTML = "";
+      d.meals.forEach(m => els.meals.appendChild(mealCard(m)));
+
+      // update active tab class
+      [...els.tabbar.children].forEach((t, i) => {
+        t.classList.toggle("active", i === state.activeIndex);
+      });
+    }
+
+    function listItem({k,d}, doneMap, storageKey){
+      const li = document.createElement("li");
+      const isDone = !!doneMap[k];
+      li.className = isDone ? "done" : "";
+      li.innerHTML = `
+        <div class="left">
+          <div class="check" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
+              <path d="M16.7 6.2l-7.6 7.8-3.8-3.8" stroke="rgba(255,255,255,.92)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="label">${k}</div>
+            <div class="sub">${d}</div>
+          </div>
+        </div>
+        <div class="kbd">tap</div>
+      `;
+      li.addEventListener("click", () => {
+        doneMap[k] = !doneMap[k];
+        storage.set(storageKey, doneMap);
+        li.classList.toggle("done", !!doneMap[k]);
+      });
+      return li;
+    }
+
+    function renderSide(){
+      els.prepList.innerHTML = "";
+      PREP_CHECKLIST.forEach(x => els.prepList.appendChild(listItem(x, state.prepDone, "diet_prep_done")));
+
+      els.shopList.innerHTML = "";
+      BASE_SHOPPING.forEach(x => els.shopList.appendChild(listItem(x, state.shopDone, "diet_shop_done")));
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+      }catch(e){
+        // fallback
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+      }
+    }
+
+    function dayToText(dayObj){
+      const lines = [];
+      lines.push(`${dayObj.day} — ${dayObj.split}`);
+      lines.push("");
+      dayObj.meals.forEach(m => lines.push(`• ${m.name}: ${m.items}`));
+      return lines.join("\n");
+    }
+
+    function shoppingToText(){
+      return [
+        "Shopping List (Base)",
+        "",
+        ...BASE_SHOPPING.map(x => `• ${x.k} — ${x.d}`),
+      ].join("\n");
+    }
+
+    function pickTodayIndex(){
+      // Uses local date to select day (Mon=1..Sun=0 in JS getDay)
+      const jsDay = new Date().getDay(); // Sun 0 ... Sat 6
+      const map = {1:0,2:1,3:2,4:3,5:4,6:5,0:6};
+      return map[jsDay] ?? 0;
+    }
+
+    function init(){
+      // If no saved index yet, default to today's day
+      const saved = localStorage.getItem("diet_active_index");
+      if(!saved){
+        state.activeIndex = pickTodayIndex();
+        storage.set("diet_active_index", state.activeIndex);
+      }
+
+      els.copyDayBtn.addEventListener("click", async () => {
+        const d = PLAN[state.activeIndex];
+        await copyText(dayToText(d));
+        toast("Day copied. Ready to paste.");
+      });
+
+      els.copyShopBtn.addEventListener("click", async () => {
+        await copyText(shoppingToText());
+        toast("Shopping list copied.");
+      });
+
+      renderAll();
+    }
+
+    function renderAll(){
+      renderTabs();
+      renderDay();
+      renderSide();
+    }
+
+    init();
+  </script>
+</body>
+</html>
